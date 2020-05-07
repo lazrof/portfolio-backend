@@ -35,7 +35,7 @@ class Tag(models.Model):
 
 
 class Content(models.Model):
-    post            = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post            = models.ForeignKey(Post, related_name='contents', on_delete=models.CASCADE)
     media           = models.ManyToManyField(Media)
     tags            = models.ManyToManyField(Tag)
     key             = models.CharField(max_length=50)
