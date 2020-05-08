@@ -13,6 +13,6 @@ from apps.translatable_content.api.views import (
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('post/', PostDetail.as_view())
+    path('api/admin/', admin.site.urls),
+    path('api/post/', PostDetail.as_view())
 ]
