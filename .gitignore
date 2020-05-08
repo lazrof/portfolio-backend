@@ -14,7 +14,7 @@ static-root/
 media-root/
 config/
 data/
-secret.py
+portfolio_backend/secrets.py
 #db.sqlite3
 #media
 
