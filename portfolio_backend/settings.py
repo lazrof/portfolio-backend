@@ -17,25 +17,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'z2$_ua%ul(g)#arclgxub@=drl0eg+g3v!4@-!pm8da7o)-k^7'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+from portfolio_backend.secrets import *
 
 # Application definition
-
 
 
 LOCAL_APPS = [
@@ -88,17 +72,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'portfolio_backend.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -144,4 +117,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+
+#URL para usar al hacer referencia a archivos estaticos ubicados en static root
 STATIC_URL = '/static/'
+
+#URL que maneja los medios de los que se sirve MEDIA_ROOT, utilizados para administrar archivos almacenados 
+MEDIA_URL = '/media/'
+
+#Define los lugares adicionales de la aplicacion staticfiles
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+#Ruta absoluta al directorio donde se recopilaran los archivos estaticos para la implementacion
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static-root")
+
+#Ruta absoluta del sistema de archivos al directorio que contendra los archivos cargados por el usuario .
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"media-root")

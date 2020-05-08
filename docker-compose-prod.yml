@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  # db:
+  #   container_name: delivery_db
+  #   image: postgres:latest
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: ${PG_USER}
+  #     POSTGRES_PASSWORD: ${PG_PASSWORD}
+  #     POSTGRES_DB: ${PG_NAME}
+  #     PGDATA: /var/lib/postgresql/data/pgdata
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - ./data/postgres/pgdata:/var/lib/postgresql/data/pgdata
+
+  web:
+    restart: always
+    container_name: portfolio_backend
+    build: .
+    volumes:
+      - .:/code
+      - ./static-root:/static-root
+      - ./media-root:/media-root
+    command: bash -c "python /code/manage.py collectstatic --noinput && 
+                      python /code/manage.py migrate --noinput && 
+                      gunicorn portfolio_backend.wsgi -b 0.0.0.0:8000 --reload"
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env
+    # depends_on:
+    #   - db
+
+# volumes:
+#   postgres_data:
