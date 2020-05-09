@@ -1,9 +1,3 @@
-""" 
-mulgore2010
-mulgore2010@gmail.com
-h0m3_asdw 
-"""
-
 """
 Django settings for portfolio_backend project.
 
