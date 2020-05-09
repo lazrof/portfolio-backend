@@ -119,7 +119,7 @@ USE_TZ = True
 
 
 #URL para usar al hacer referencia a archivos estaticos ubicados en static root
-STATIC_URL = '/static/'
+STATIC_URL = '/static-root/'
 
 #URL que maneja los medios de los que se sirve MEDIA_ROOT, utilizados para administrar archivos almacenados 
 MEDIA_URL = '/media/'
