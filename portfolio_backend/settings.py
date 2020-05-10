@@ -32,6 +32,7 @@ LOCAL_APPS = [
 THIRD_PARTY_APPS = [
     'rest_framework',
     'corsheaders',
+    'tinymce',
 ]
 
 INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS

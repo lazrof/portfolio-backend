@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.signals import pre_save
+from tinymce.models import HTMLField
 
 from .signals import slug_save_receiver
 from .choices import LANGUAGE_CODES, MEDIA_TYPES
@@ -39,7 +40,7 @@ class Content(models.Model):
     media           = models.ManyToManyField(Media)
     tags            = models.ManyToManyField(Tag)
     key             = models.CharField(max_length=50)
-    value           = models.TextField()
+    value           = HTMLField()
     title           = models.CharField(max_length=50, blank=True, null=True)
     created_at      = models.DateTimeField(auto_now_add=True)
     updated         = models.DateTimeField(auto_now=True)

@@ -6,7 +6,7 @@
 
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from apps.translatable_content.api.views import (
     PostDetail
@@ -14,5 +14,6 @@ from apps.translatable_content.api.views import (
 
 urlpatterns = [
     path('api/admin/', admin.site.urls),
-    path('api/post/', PostDetail.as_view())
+    path('api/post/', PostDetail.as_view()),
+    path('tinymce/', include('tinymce.urls')),
 ]
