@@ -1,4 +1,5 @@
 # portfolio-backend
+Deployed in Google Cloud with docker-compose and Nginx
 
 ## Things To Do
 - Change to Real DB, remove sqlite
