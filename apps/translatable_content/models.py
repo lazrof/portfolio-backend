@@ -30,6 +30,7 @@ class Media(models.Model):
 
 class Tag(models.Model):
     name            = models.CharField(max_length=100)
+    color_code      = models.CharField(max_length=25, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -37,13 +38,14 @@ class Tag(models.Model):
 
 class Content(models.Model):
     post            = models.ForeignKey(Post, related_name='contents', on_delete=models.CASCADE)
-    media           = models.ManyToManyField(Media)
-    tags            = models.ManyToManyField(Tag)
-    key             = models.CharField(max_length=50)
+    media           = models.ManyToManyField(Media, blank=True, null=True)
+    tags            = models.ManyToManyField(Tag, blank=True, null=True)
+    key             = models.CharField(max_length=70)
     value           = HTMLField()
-    title           = models.CharField(max_length=50, blank=True, null=True)
+    title           = models.CharField(max_length=120, blank=True, null=True)
     created_at      = models.DateTimeField(auto_now_add=True)
     updated         = models.DateTimeField(auto_now=True)
+    order           = models.PositiveIntegerField(blank=True, null=True)
     language_code   = models.CharField(
         max_length=2,
         choices=LANGUAGE_CODES,

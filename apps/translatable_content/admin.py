@@ -9,11 +9,11 @@ admin.site.register(Tag)
 @admin.register(Content)
 class Content(admin.ModelAdmin):
 	list_display = [
+        'title',
         'key',
         'post',
-        'title',
         'language_code',
-        'created_at',
+        'order',
         'updated'
     ]
 
