@@ -2,7 +2,7 @@ from django.http import HttpResponse, JsonResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status, authentication, permissions
+from rest_framework import status, authentication, permissions, generics
 
 
 from apps.translatable_content.models import Post, Content, Tag, Media
@@ -20,7 +20,7 @@ def test(request):
 
     return JsonResponse(serializer.data, safe=False) """
 
-class PostDetail(APIView):
+class PostDetail_(APIView):
     """
     Post Detail View
     """
@@ -37,7 +37,7 @@ class PostDetail(APIView):
             slug = None         
             
         
-        post = Post.objects.filter(slug=slug).order_by('contents__order')
+        post = Post.objects.get(slug=slug)
         if not post:
             message = 'Post not exists or Invalidad data format'
             return Response(message, status.HTTP_404_NOT_FOUND)
@@ -48,4 +48,7 @@ class PostDetail(APIView):
             return JsonResponse(serializer.data, safe=False)
 
         
-        
+class PostDetail(generics.RetrieveAPIView):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+    lookup_field = 'slug'
