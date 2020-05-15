@@ -37,7 +37,7 @@ class PostDetail(APIView):
             slug = None         
             
         
-        post = Post.objects.filter(slug=slug)
+        post = Post.objects.filter(slug=slug).order_by('contents__order')
         if not post:
             message = 'Post not exists or Invalidad data format'
             return Response(message, status.HTTP_404_NOT_FOUND)
